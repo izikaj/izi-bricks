@@ -2,6 +2,8 @@
 
 [Demo](https://izi-bricks.netlify.app/)
 
+[Play on Codepen](https://codepen.io/IzikAJ/pen/OJxRRaj)
+
 # DEV
 
 ## Vue 3 + Vite
