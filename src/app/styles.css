@@ -1,0 +1,117 @@
+.hash-pane {
+  background: transparent;
+}
+
+.hash-pane-wrapper {
+  border: 1px solid silver;
+  border-radius: 3px;
+  position: relative;
+  padding: 0.75em 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.hash-pane.titled .hash-pane-wrapper {
+  margin-top: 10px;
+  padding-top: 1.5em;
+}
+
+.hash-title {
+  position: absolute;
+  top: -10px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1em;
+  border: 1px solid silver;
+  color: #666;
+  padding: 1px 5px;
+}
+
+.hash-pane .field {
+  display: flex;
+}
+
+.field>.hash-pane,
+.field>.list-pane,
+.field>input,
+.field>.field-input-wrap,
+.field>select,
+.field>textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.field>textarea {
+  min-height: 50px;
+  max-height: 350px;
+  resize: vertical;
+}
+
+.hash-pane label {
+  width: 40%;
+  min-width: 150px;
+}
+
+.list-item-removed,
+.field-hidden {
+  display: none;
+}
+
+.list-pane {
+  border: 1px solid silver;
+  border-radius: 3px;
+  padding: 10px;
+  position: relative;
+  margin-top: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.list-pane.titled {
+  padding-top: 20px;
+}
+
+.list-title {
+  position: absolute;
+  top: -10px;
+  background: #fff;
+  font-size: 14px;
+  line-height: 1em;
+  border: 1px solid silver;
+  color: #666;
+  padding: 1px 5px;
+}
+
+.list-item {
+  background: #fff;
+  position: relative;
+}
+
+.list-item .remove {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  font-size: 12px;
+  height: 1.5em;
+  line-height: 1em;
+  padding: 0 0.5em;
+}
+
+.list-item-removeable .hash-pane-wrapper {
+  padding-bottom: 1.5em;
+}
+
+.list-controls ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.list-controls li {
+  list-style: none;
+}

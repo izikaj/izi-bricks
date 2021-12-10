@@ -1,0 +1,292 @@
+{
+  "config": {
+    "as": "object",
+    "fields": [{
+        "name": "string1",
+        "title": "String 1",
+        "as": "string",
+        "required": true,
+        "placeholder": "input some string"
+      },
+      {
+        "name": "number1",
+        "title": "Number 1",
+        "as": "number",
+        "default": 99,
+        "min": 10,
+        "max": 100,
+        "step": 0.1
+      },
+      {
+        "name": "boolean1",
+        "title": "Yes-no 1",
+        "as": "boolean",
+        "default": "yes"
+      },
+      {
+        "name": "boolean2",
+        "title": "Yes-no 2",
+        "as": "boolean"
+      },
+      {
+        "name": "select1",
+        "title": "Select 1",
+        "as": "select",
+        "collection": [
+          "1",
+          "2",
+          "3"
+        ],
+        "data": {
+          "mimimumResultsForSeatch": -1
+        }
+      },
+      {
+        "name": "select2",
+        "title": "Select 2",
+        "as": "select",
+        "collection": [{
+          "title": "test 2 - 1",
+          "value": "2-1"
+        }, {
+          "title": "test 2 - 2",
+          "value": "2-2"
+        }]
+      },
+      {
+        "name": "select3",
+        "title": "Select 3",
+        "as": "select",
+        "collection": [
+          ["test 3 - 1", "3-1"],
+          ["test 3 - 2", "3-2"]
+        ]
+      },
+      {
+        "name": "text1",
+        "title": "Text 1",
+        "as": "text",
+        "placeholder": "some text..."
+      },
+      {
+        "name": "text2",
+        "title": "Text 2",
+        "as": "ckeditor",
+        "required": false
+      },
+      {
+        "name": "object1",
+        "title": "Object 1",
+        "as": "object",
+        "fields": [{
+            "name": "title",
+            "as": "string"
+          },
+          {
+            "name": "count",
+            "as": "number",
+            "default": 5
+          },
+          {
+            "name": "is_visible",
+            "as": "boolean",
+            "default": "yes"
+          }
+        ]
+      },
+      {
+        "name": "list1",
+        "title": "List 1",
+        "as": "list",
+        "fields": [{
+            "as": "string",
+            "name": "title",
+            "title": "Title"
+          },
+          {
+            "as": "number",
+            "default": 5,
+            "name": "count"
+          },
+          {
+            "as": "boolean",
+            "default": true,
+            "name": "is_visible",
+            "title": "Is Visible"
+          }
+        ]
+      },
+      {
+        "name": "list2",
+        "title": "List 2",
+        "as": "list",
+        "types": [{
+            "type": "title",
+            "as": "string",
+            "title": "Title"
+          },
+          {
+            "type": "count",
+            "as": "number",
+            "default": 5
+          },
+          {
+            "type": "is_visible",
+            "as": "boolean",
+            "default": true
+          }, {
+            "type": "hash",
+            "as": "object",
+            "fields": [{
+                "name": "title",
+                "as": "string"
+              },
+              {
+                "name": "count",
+                "as": "number",
+                "default": 5
+              },
+              {
+                "name": "is_visible",
+                "as": "boolean",
+                "default": "yes"
+              }
+            ]
+          }, {
+            "type": "hash2",
+            "title": "Object 2",
+            "as": "object",
+            "fields": [{
+              "name": "kind",
+              "as": "hidden",
+              "value": "kind2"
+            }, {
+              "name": "title",
+              "as": "string"
+            }]
+          }, {
+            "type": "hash3",
+            "title": "Object 3",
+            "as": "object",
+            "fields": [{
+              "name": "count",
+              "as": "number",
+              "default": 5
+            }, {
+              "name": "is_visible",
+              "as": "boolean",
+              "default": "yes"
+            }]
+          }
+        ]
+      },
+      {
+        "name": "list3",
+        "title": "List 3",
+        "as": "list",
+        "allowAdd": false,
+        "allowRemove": false,
+        "items": [{
+            "type": "textline",
+            "value": "Some Title"
+          },
+          {
+            "type": "textline",
+            "value": "Some Description"
+          },
+          {
+            "type": "item",
+            "title": "Item 1"
+          },
+          {
+            "type": "item",
+            "title": "Item 2",
+            "count": "99"
+          },
+          {
+            "type": "item",
+            "title": "Item 3",
+            "is_visible": false
+          }
+        ],
+        "types": [{
+            "type": "textline",
+            "as": "string"
+          },
+          {
+            "type": "item",
+            "as": "object",
+            "fields": [{
+                "name": "title",
+                "as": "string"
+              },
+              {
+                "name": "count",
+                "as": "number",
+                "default": 5
+              },
+              {
+                "name": "is_visible",
+                "as": "boolean",
+                "default": "yes"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "value": {
+    "string1": "dsadsadas",
+    "number1": "12",
+    "boolean1": "false",
+    "boolean2": "true",
+    "select2": "2-2",
+    "select3": "3-2",
+    "text1": "todo",
+    "text2": "some",
+    "object1": {
+      "title": "obobobobobo!!!",
+      "count": "4",
+      "is_visible": "yes"
+    },
+    "list2": [{
+        "title": "dsasdadsa",
+        "count": 10,
+        "is_visible": "yes",
+        "type": "hash"
+      },
+      {
+        "value": "SOme else",
+        "type": "title"
+      }
+    ],
+    "list3": [{
+        "value": "Some Title 1",
+        "type": "textline"
+      },
+      {
+        "value": "Some Description 2",
+        "type": "textline"
+      },
+      {
+        "title": "Item 123456789",
+        "count": 555555,
+        "is_visible": "yes",
+        "type": "item"
+      },
+      {
+        "title": "Item 2",
+        "count": "99",
+        "is_visible": "yes",
+        "type": "item"
+      },
+      {
+        "title": "Item 3",
+        "count": 5,
+        "is_visible": "false",
+        "type": "item"
+      }
+    ]
+  }
+}
