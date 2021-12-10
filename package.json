@@ -2,6 +2,8 @@
   "name": "izi-bricks",
   "version": "0.0.1",
   "files": ["dist"],
+  "homepage": "https://izi-bricks.netlify.app/",
+  "repository": "https://github.com/izikaj/izi-bricks",
   "scripts": {
     "dev": "vite",
     "build:demo": "vite build -c vite.config.demo.js",
