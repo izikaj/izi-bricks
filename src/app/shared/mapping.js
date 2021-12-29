@@ -20,15 +20,23 @@ export const MAPPING = {
   checkbox: Boolean,
   text: Text,
   ckeditor: Text,
+  // objects
   object: Hash,
   hash: Hash,
   tobject: TypedHash,
   thash: TypedHash,
+  typed_hash: TypedHash,
+  typedHash: TypedHash,
+  'typed-hash': TypedHash,
+  // lists
   list: SimpleList,
+  slist: SimpleList,
   simpleList: SimpleList,
   simple_list: SimpleList,
+  'simple-list': SimpleList,
   tlist: TypedList,
   typed_list: TypedList,
+  'typed-list': TypedList,
   typedList: TypedList,
 }
 
@@ -37,7 +45,10 @@ export function isHidden(value) {
 }
 
 export function isHash(value) {
-  return value === Hash || MAPPING[value] === Hash;
+  return (
+    value === Hash || MAPPING[value] === Hash ||
+    value === TypedHash || MAPPING[value] === TypedHash
+  );
 }
 
 export function isList(value) {
@@ -54,6 +65,7 @@ export function isComplex(value) {
 const mapping = function (value) {
   return MAPPING[value] || String;
 }
+
 mapping.aliases = MAPPING;
 mapping.isHidden = isHidden;
 mapping.isHash = isHash;
