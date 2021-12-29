@@ -1,6 +1,6 @@
 {
   "name": "izi-bricks",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": ["dist"],
   "homepage": "https://izi-bricks.netlify.app/",
   "repository": "https://github.com/izikaj/izi-bricks",
