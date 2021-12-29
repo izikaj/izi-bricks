@@ -9,7 +9,7 @@ const { editor, result } = prepare({
 const config = {
   as: "object",
   fields: [{
-    as: 'list',
+    as: 'typed_list',
     name: 'items',
     types: [{
         type: 'line',

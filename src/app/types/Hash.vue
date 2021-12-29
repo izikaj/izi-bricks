@@ -15,13 +15,7 @@ import Field from "../brick/Field";
 import props from "../shared/props";
 import firstExisting from "../shared/firstExisting";
 import uid from "../shared/uid";
-
-function joinPaths(parent, name) {
-  if (parent === undefined || parent === "") {
-    return name;
-  }
-  return [parent, name].join(".");
-}
+import joinPaths from "../shared/joinPaths";
 
 export default {
   data() {

@@ -1,7 +1,4 @@
-import {
-  h
-} from 'vue';
-
+import { h } from 'vue';
 import Label from './Label.vue';
 import props from '../shared/props';
 import mapping from '../shared/mapping';

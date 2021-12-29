@@ -10,6 +10,16 @@ function normalizedParts(path) {
   return path.toString().split('.');
 }
 
+function normalizedPath(value) {
+  return normalizedParts(value).filter(function(part) {
+    if (part === '') {
+      return false;
+    }
+
+    return true;
+  });
+}
+
 function isNumeric(value) {
   if (typeof value === 'number' && Number.isFinite(value)) {
     return true;
@@ -66,21 +76,38 @@ function nested(data) {
   var $data = data;
   var $fn = function() {};
 
-  $fn.reset = (data) => {
-    $data = data || {};
+  $fn.reset = (value) => {
+    value = value || {};
+    for (const key in $data) {
+      if ($data.hasOwnProperty(key) && !value.hasOwnProperty(key)) {
+        delete($data[key]);
+      }
+    }
+    for (const key in value) {
+      if (value.hasOwnProperty(key)) {
+        $data[key] = value[key];
+      }
+    }
   }
   $fn.clear = () => $fn.reset()
   $fn.get = (path) => {
-    return dig($data, normalizedParts(path));
+    return dig($data, normalizedPath(path));
   }
   $fn.set = (path, value) => {
-    const parts = normalizedParts(path);
+    const parts = normalizedPath(path);
+    if (parts.length === 0 && typeof value === 'object') {
+      $fn.reset(value);
+    }
     const head = digForHead($data, parts);
     const lastKey = parts[parts.length - 1];
     head[lastKey] = value;
   }
   $fn.remove = (path) => {
-    const parts = normalizedParts(path);
+    console.warn('NESTED REMOVE', path, normalizedPath(path));
+    const parts = normalizedPath(path);
+    if (parts.length === 0) {
+      return $fn.clear();
+    }
     const head = digForHead($data, parts);
     const lastKey = parts[parts.length - 1];
     delete(head[lastKey]);

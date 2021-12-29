@@ -31,18 +31,7 @@ import Field from "../brick/Field";
       </div>
     </div>
     <div class="list-controls" v-if="allowAdd">
-      <span v-if="withTypes">
-        <ul class="drop">
-          <li v-for="item in types" v-bind:key="item.type">
-            <button type="button" @click.stop.prevent="addItem(item)">
-              Add {{ item.title || item.type }} Item
-            </button>
-          </li>
-        </ul>
-      </span>
-      <span v-if="withFields">
-        <button type="button" @click.stop.prevent="addItem()">Add Item</button>
-      </span>
+      <button type="button" @click.stop.prevent="addItem()">Add Item</button>
     </div>
   </div>
 </template>
@@ -51,7 +40,6 @@ import Field from "../brick/Field";
 import propagate from "../shared/propagate";
 import props from "../shared/props";
 import firstExisting from "../shared/firstExisting";
-import typeNormalize from "../shared/typeNormalize";
 import joinPaths from "../shared/joinPaths";
 
 function listItemIndex(path, cursor) {
@@ -64,34 +52,23 @@ function listItemIndex(path, cursor) {
 export default {
   data() {
     const viewTitle = firstExisting(this.title, this.name, undefined);
-    const withTypes = Array.isArray(this.types) && this.types.length > 0;
-    const withFields = Array.isArray(this.fields) && this.fields.length > 0;
 
     return {
       viewTitle,
       list: undefined,
       cursor: 0,
-      withTypes,
-      withFields,
     };
   },
   created() {
-    const items = firstExisting(this.value, this.list, this.items, []);
+    const items = firstExisting(this.value, this.list, this.items, this.default, []);
     const list = [];
-    const types = {};
-    const fallback = { as: "object", fields: this.fields };
-    if (this.withTypes) {
-      firstExisting(this.types, []).forEach(function (type) {
-        types[type.type] = type;
-      });
-    }
-    let { cursor, path } = this;
-    items.forEach(function (item) {
-      const type = typeNormalize(types[item.type] || fallback);
+    let { cursor, path, fields } = this;
+    items.forEach(function (value) {
       list.push({
-        ...type,
+        as: "object",
+        fields,
         ...listItemIndex(path, cursor++),
-        value: item,
+        value,
       });
     });
     this.list = list;
@@ -100,12 +77,10 @@ export default {
   methods: {
     propagate,
     addItem: function (data) {
-      const type = typeNormalize(
-        firstExisting(data, { as: "object", fields: this.fields })
-      );
-
+      const { fields } = this;
       data = {
-        ...type,
+        as: "object",
+        fields,
         ...listItemIndex(this.path, this.cursor++),
       };
 

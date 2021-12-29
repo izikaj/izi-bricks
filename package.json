@@ -5,12 +5,13 @@
   "homepage": "https://izi-bricks.netlify.app/",
   "repository": "https://github.com/izikaj/izi-bricks",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host=0.0.0.0",
     "build:demo": "vite build -c vite.config.demo.js",
     "build:lib": "vite build -c vite.config.js",
     "move-to-dist": "cp -R tmp/lib/* dist/ && cp -R tmp/demo dist/ && rm -rf tmp/",
     "build": "npm run build:lib && npm run build:demo && npm run move-to-dist",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "start": "npm run dev"
   },
   "main": "./dist/izi-bricks.umd.js",
   "module": "./dist/izi-bricks.es.js",

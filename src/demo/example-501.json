@@ -119,7 +119,7 @@
       {
         "name": "list2",
         "title": "List 2",
-        "as": "list",
+        "as": "typed_list",
         "types": [{
             "type": "title",
             "as": "string",
@@ -183,7 +183,7 @@
       {
         "name": "list3",
         "title": "List 3",
-        "as": "list",
+        "as": "typed_list",
         "allowAdd": false,
         "allowRemove": false,
         "items": [{

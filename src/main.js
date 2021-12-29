@@ -10,6 +10,8 @@ import './demo/example-006';
 
 // object example
 import './demo/example-101';
+import './demo/example-102';
+import './demo/example-103';
 
 // list example
 import './demo/example-201';

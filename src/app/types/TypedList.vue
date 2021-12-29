@@ -31,18 +31,13 @@ import Field from "../brick/Field";
       </div>
     </div>
     <div class="list-controls" v-if="allowAdd">
-      <span v-if="withTypes">
-        <ul class="drop">
-          <li v-for="item in types" v-bind:key="item.type">
-            <button type="button" @click.stop.prevent="addItem(item)">
-              Add {{ item.title || item.type }} Item
-            </button>
-          </li>
-        </ul>
-      </span>
-      <span v-if="withFields">
-        <button type="button" @click.stop.prevent="addItem()">Add Item</button>
-      </span>
+      <ul class="drop">
+        <li v-for="item in types" v-bind:key="item.type">
+          <button type="button" @click.stop.prevent="addItem(item)">
+            Add {{ item.title || item.type }} Item
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -64,35 +59,30 @@ function listItemIndex(path, cursor) {
 export default {
   data() {
     const viewTitle = firstExisting(this.title, this.name, undefined);
-    const withTypes = Array.isArray(this.types) && this.types.length > 0;
-    const withFields = Array.isArray(this.fields) && this.fields.length > 0;
 
     return {
       viewTitle,
       list: undefined,
       cursor: 0,
-      withTypes,
-      withFields,
     };
   },
   created() {
     const items = firstExisting(this.value, this.list, this.items, []);
     const list = [];
     const types = {};
-    const fallback = { as: "object", fields: this.fields };
-    if (this.withTypes) {
-      firstExisting(this.types, []).forEach(function (type) {
-        types[type.type] = type;
-      });
-    }
+    firstExisting(this.types, []).forEach(function (type) {
+      types[type.type] = type;
+    });
     let { cursor, path } = this;
     items.forEach(function (item) {
-      const type = typeNormalize(types[item.type] || fallback);
-      list.push({
-        ...type,
-        ...listItemIndex(path, cursor++),
-        value: item,
-      });
+      const type = typeNormalize(types[item.type]);
+      if (type) {
+        list.push({
+          ...type,
+          ...listItemIndex(path, cursor++),
+          value: item,
+        });
+      }
     });
     this.list = list;
     this.cursor = cursor;
@@ -100,9 +90,7 @@ export default {
   methods: {
     propagate,
     addItem: function (data) {
-      const type = typeNormalize(
-        firstExisting(data, { as: "object", fields: this.fields })
-      );
+      const type = typeNormalize(data);
 
       data = {
         ...type,
